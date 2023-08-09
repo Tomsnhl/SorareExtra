@@ -14,11 +14,12 @@ class SorareAuthService
     }
 
     public function getSalt(string $email): string
-    {
-        $response = $this->client->request('GET', "https://api.sorare.com/api/v1/users/$email");
-        $data = $response->toArray();
-        return $data["salt"] ?? '';
-    }
+{
+    $url = "https://api.sorare.com/api/v1/users/" . urlencode($email);
+    $response = $this->client->request('GET', $url);
+    $data = $response->toArray();
+    return $data["salt"] ?? '';
+}
 
     public function getHashedPassword(string $email, string $password): string
     {
