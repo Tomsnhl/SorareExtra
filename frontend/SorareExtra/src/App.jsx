@@ -1,31 +1,23 @@
-import { useState } from "react";
-import ballon from "./assets/ballon.png";
 import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./Pages/Home/Home";
+import Header from "./Layout/Header/Header";
+import Footer from "./Layout/Footer/Footer";
+import Dashboard from "./Pages/Dashboard/Dashboard";
+import Thomas from "./Pages/Thomas/Thomas";
 
 function App() {
-    const [count, setCount] = useState(0);
-
     return (
         <>
-            <div>
-                <a href="#" target="_blank">
-                    <img src={ballon} className="logo" />
-                </a>
-            </div>
-            <h1>Sorare Card Battle Royale</h1>
-            <div className="card">
-                <button onClick={() => setCount((count) => count + 1)}>
-                    count is {count}
-                </button>
-                <p>
-                    Sorare Card Battle Royale : Dans ce mode de jeu, les
-                    utilisateurs s'affrontent dans des matchs de style "Battle
-                    Royale" où le dernier joueur restant gagne. Chaque
-                    utilisateur a un "deck" de cartes Sorare et utilise les
-                    attributs de ces cartes pour "combattre" les autres
-                    utilisateurs.
-                </p>
-            </div>
+            <BrowserRouter>
+                <Header />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/vestiaire" element={<Dashboard />} />
+                    <Route path="/thomas" element={<Thomas />} />
+                </Routes>
+                <Footer />
+            </BrowserRouter>
         </>
     );
 }
